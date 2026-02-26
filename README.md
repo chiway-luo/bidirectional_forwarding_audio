@@ -1,7 +1,7 @@
 # 在ssh中,转发本地麦克风和远程声音
 通过PulseAudio服务,将远程声音转发到本地,同时将本地麦克风转发到远程
 
-> **提示**: 本教程中的部分构建过程源于另一个仓库 [ssh-x11-forwarding-guide](https://github.com/chiway-luo/ssh-x11-forwarding-guide.git)。
+> **提示**: 本教程中的部分构建过程源于本人另一个仓库 [ssh-x11-forwarding-guide](https://github.com/chiway-luo/ssh-x11-forwarding-guide.git)。
 
 ## 问题描述
 在远程开发中,如涉及语音模块的开发与调试,未能将远程声音转发到本地,以及将本地麦克风转发到远程,会极大影响开发效率。
