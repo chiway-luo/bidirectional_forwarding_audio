@@ -100,5 +100,25 @@ pactl set-default-source <你的source名>
 ```
 system("paplay tts_sample.wav"); 
 ```
+## 问题
+当想使用远程的本地麦克风/扬声器时,需要将环境变量 PULSE_SERVER unset,才能使用远程的本地 麦克风输入/扬声器输出
+将以下代码插入bashrc文件
+```
+#声音转发
+#export PULSE_SERVER=tcp:127.0.0.1:4713 #注释掉默认转发到Windows的声音
 
+# ---- PulseAudio 目标切换：远程本地 / 转发到Windows ----
+local_mic() {
+  unset PULSE_SERVER
+  echo "[Pulse] 使用远程本地音频(含远程本地麦克风)，PULSE_SERVER 已 unset"
+}
+remote_mic() {
+  export PULSE_SERVER="tcp:127.0.0.1:4713"
+  echo "[Pulse] 使用转发到Windows的音频(本地扬声器/本地麦克风)，PULSE_SERVER=$PULSE_SERVER"
+}
+mic_check() {
+  echo "PULSE_SERVER=${PULSE_SERVER:-<unset>}"
+  pactl info 2>/dev/null | grep -E "Server String|Server Name" || true
+}
+```
 # 到此为止设置结束,你就可以在远程开发环境中使用本地麦克风以及听到远程声音了
